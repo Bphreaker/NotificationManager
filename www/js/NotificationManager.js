@@ -91,6 +91,9 @@ NotificationManager._openAppNotificationSettings = function(onSuccess, onFail) {
     cordova.exec(onSuccess, onFail, NotificationManager.SERVICE_NAME, 'openAppNotificationSettings');
 };
 
+NotificationManager._areNotificationsEnabled = function(onSuccess, onFail) {
+    cordova.exec(onSuccess, onFail, NotificationManager.SERVICE_NAME, 'areNotificationsEnabled');
+};
 
 NotificationManager._openNotificationChannelSettings = function(channelId, onSuccess, onFail) {
     cordova.exec(function(channelJSON) {
