@@ -41,15 +41,14 @@ public class NotificationManagerPlugin extends CordovaPlugin {
     @TargetApi(24)
     private void areNotificationsEnabled() {
         // only call on Android O and above
+        boolean areNotificationsEnabled = false;
+        
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            final Activity activity = this.cordova.getActivity();
-
-            Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, activity.getPackageName());
-
-            activity.startActivity(intent);
+            final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+            
+            areNotificationsEnabled = notificationManager.areNotificationsEnabled();
         }
+        return areNotificationsEnabled;
     }
 
     /**
