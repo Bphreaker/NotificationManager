@@ -48,7 +48,8 @@ public class NotificationManagerPlugin extends CordovaPlugin {
             final NotificationManager notificationManager = (NotificationManager) activity
                     .getSystemService(Context.NOTIFICATION_SERVICE);
             
-            return boolean areNotificationsEnabled = notificationManager.areNotificationsEnabled();
+            boolean areNotificationsEnabled = notificationManager.areNotificationsEnabled();
+            return areNotificationsEnabled;
         }
         return false;
     }
