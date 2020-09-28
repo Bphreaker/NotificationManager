@@ -21,11 +21,6 @@ var NotificationChannel = function(channelJSON) {
     };
 
 
-var NotificationStatus = function() {
-        return NotificationManager.areNotificationsEnabled();
-    };
-
-
 NotificationManager.SERVICE_NAME = 'NotificationManagerPlugin';
 /**
  * @see https://developer.android.com/reference/android/app/NotificationManager.html#IMPORTANCE_DEFAULT
@@ -81,6 +76,12 @@ NotificationManager.openAppNotificationSettings = function(channelId) {
 NotificationManager.openNotificationChannelSettings = function(channelId) {
     return new Promise(function(onSuccess, onFail) {
         NotificationManager._openNotificationChannelSettings(channelId, onSuccess, onFail);
+    });
+};
+
+NotificationManager.areNotificationsEnabled = function(channelId) {
+    return new Promise(function(onSuccess, onFail) {
+        NotificationManager._areNotificationsEnabled(channelId, onSuccess, onFail);
     });
 };
 
