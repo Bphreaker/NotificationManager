@@ -137,7 +137,7 @@ public class NotificationManagerPlugin extends CordovaPlugin {
                 } else {
                     status = false;    
                 }
-                callbackContext.success("Method called: "+status);
+                callbackContext.success(status);
                 return true;
             }
             
