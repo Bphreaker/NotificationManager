@@ -41,7 +41,6 @@ public class NotificationManagerPlugin extends CordovaPlugin {
     @TargetApi(24)
     private boolean areNotificationsEnabled() {
         // only call on Android O and above
-        boolean areNotificationsEnabled = false;
             
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             final Activity activity = this.cordova.getActivity();
@@ -49,13 +48,13 @@ public class NotificationManagerPlugin extends CordovaPlugin {
             final NotificationManager notificationManager = (NotificationManager) activity
                     .getSystemService(Context.NOTIFICATION_SERVICE);
             
-            areNotificationsEnabled = notificationManager.areNotificationsEnabled();
-            
+            return null != notificationManager && notificationManager.areNotificationsEnabled();
+                        
         }
         
-        return areNotificationsEnabled;
+        return true;
     }
-
+  
     /**
      * After you create a notification channel, you cannot change the notification channel's visual
      * and auditory behaviors programmatically—only the user can change the channel behaviors from
