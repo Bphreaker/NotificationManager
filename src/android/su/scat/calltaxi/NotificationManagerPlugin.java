@@ -131,8 +131,7 @@ public class NotificationManagerPlugin extends CordovaPlugin {
             }
             
             if ("areNotificationsEnabled".equals(action)) {
-                areNotificationsEnabled();
-                callbackContext.success();
+                callbackContext.success(areNotificationsEnabled());
                 return true;
             }
             
