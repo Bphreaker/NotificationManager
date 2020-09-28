@@ -84,13 +84,6 @@ NotificationManager.openNotificationChannelSettings = function(channelId) {
     });
 };
 
-NotificationManager.areNotificationsEnabled = function(channelId) {
-    return new Promise(function(onSuccess, onFail) {
-        NotificationManager._areNotificationsEnabled(channelId, onSuccess, onFail);
-    });
-};
-
-
 NotificationManager._getNotificationChannel = function(channelId, onSuccess, onFail) {
     cordova.exec(function(channelJSON) {
         onSuccess(new NotificationChannel(channelJSON));
@@ -109,9 +102,7 @@ NotificationManager._openNotificationChannelSettings = function(channelId, onSuc
 };
 
 NotificationManager._areNotificationsEnabled = function(onSuccess, onFail) {
-    cordova.exec(function() {
-        onSuccess(new NotificationStatus());
-    }, onFail, NotificationManager.SERVICE_NAME, 'areNotificationsEnabled');
+    cordova.exec(onSuccess, onFail, NotificationManager.SERVICE_NAME, 'areNotificationsEnabled');
 };
 
 
