@@ -20,6 +20,13 @@ var NotificationChannel = function(channelJSON) {
     NotificationManager = function() {
     };
 
+function statusSuccess(status) {
+    console.log(status);
+};
+
+function statusError() {
+    console.log("something went wrong");
+};
 
 NotificationManager.SERVICE_NAME = 'NotificationManagerPlugin';
 /**
@@ -79,18 +86,11 @@ NotificationManager.openNotificationChannelSettings = function(channelId) {
     });
 };
 
-NotificationManager.areNotificationsEnabled = function(channelId) {
-    return new Promise(function(onSuccess, onFail) {
-        NotificationManager._areNotificationsEnabled(channelId, onSuccess, onFail);
-    });
-};
-
 NotificationManager._getNotificationChannel = function(channelId, onSuccess, onFail) {
     cordova.exec(function(channelJSON) {
         onSuccess(new NotificationChannel(channelJSON));
     }, onFail, NotificationManager.SERVICE_NAME, 'getNotificationChannel', [channelId]);
 };
-
 
 NotificationManager._openAppNotificationSettings = function(onSuccess, onFail) {
     cordova.exec(onSuccess, onFail, NotificationManager.SERVICE_NAME, 'openAppNotificationSettings');
@@ -102,7 +102,7 @@ NotificationManager._openNotificationChannelSettings = function(channelId, onSuc
     }, onFail, NotificationManager.SERVICE_NAME, 'openNotificationChannelSettings', [channelId]);
 };
 
-NotificationManager._areNotificationsEnabled = function(onSuccess, onFail) {
+NotificationManager.areNotificationsEnabled = function(onSuccess, onFail) {
     cordova.exec(onSuccess, onFail, NotificationManager.SERVICE_NAME, 'areNotificationsEnabled');
 };
 
