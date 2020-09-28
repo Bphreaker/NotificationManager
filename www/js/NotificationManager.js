@@ -21,6 +21,11 @@ var NotificationChannel = function(channelJSON) {
     };
 
 
+var NotificationStatus = function() {
+        return NotificationManager.areNotificationsEnabled();
+    };
+
+
 NotificationManager.SERVICE_NAME = 'NotificationManagerPlugin';
 /**
  * @see https://developer.android.com/reference/android/app/NotificationManager.html#IMPORTANCE_DEFAULT
@@ -104,7 +109,9 @@ NotificationManager._openNotificationChannelSettings = function(channelId, onSuc
 };
 
 NotificationManager._areNotificationsEnabled = function(onSuccess, onFail) {
-    cordova.exec(onSuccess, onFail, NotificationManager.SERVICE_NAME, 'areNotificationsEnabled');
+    cordova.exec(function() {
+        onSuccess(new NotificationStatus());
+    }, onFail, NotificationManager.SERVICE_NAME, 'areNotificationsEnabled');
 };
 
 
